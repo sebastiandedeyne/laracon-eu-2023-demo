@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\ViewModels\Admin\EventViewModel;
-use App\Http\ViewModels\Admin\IndexViewModel;
 use App\Models\Event;
 use App\Models\Venue;
 use Illuminate\Http\Request;
@@ -12,19 +10,29 @@ class EventController
 {
     public function index()
     {
-        return view('admin.events.index', new IndexViewModel(
-            paginator: Event::with('venue.country')->paginate(),
-            links: Event::links(),
-        ));
+        return view('admin.events.index', [
+            'events' => Event::with('venue.country')->paginate(),
+        ]);
     }
 
     public function create()
     {
-        return view('admin.events.edit', new EventViewModel(
-            event: null,
-            venues: Venue::all(),
-        ));
+        return view('admin.events.edit', [
+            'venues' => Venue::all()
+                ->mapWithKeys(fn (Venue $venue) => [$venue->id => $venue->name]),
+        ]);
     }
+
+    public function edit(Event $event)
+    {
+        return view('admin.events.edit', [
+            'event' => $event,
+            'venues' => Venue::all()
+                ->mapWithKeys(fn (Venue $venue) => [$venue->id => $venue->name]),
+        ]);
+    }
+
+    //
 
     public function store(Request $request)
     {
@@ -36,14 +44,6 @@ class EventController
         $event = Event::create($data);
 
         return redirect($event->links->edit);
-    }
-
-    public function edit(Event $event)
-    {
-        return view('admin.events.edit', new EventViewModel(
-            event: $event,
-            venues: Venue::all(),
-        ));
     }
 
     public function update(Event $event, Request $request)

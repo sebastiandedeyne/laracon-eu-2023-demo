@@ -1,19 +1,18 @@
-@php
-    /** @var \App\Http\ViewModels\Admin\VenueViewModel $view */
-@endphp
-
 <x-layout.app>
-    <x-forms.form :action="$view->action" :method="$view->method">
+    <x-forms.form
+        :action="$venue ? action([App\Http\Controllers\Admin\VenueController::class, 'update'], $venue) : action([App\Http\Controllers\Admin\VenueController::class, 'store'])"
+        :method="$venue ? 'PUT' : 'POST'"
+    >
         <x-forms.text-field
             name="name"
             label="Name"
-            :value="$view->venue?->name"
+            :value="$venue?->name"
         />
         <x-forms.select-field
             name="country_id"
             label="Country"
-            :value="$view->venue?->country_id"
-            :options="$view->countries"
+            :value="$venue?->country_id"
+            :options="$countries"
         />
         <x-forms.submit>
             Save

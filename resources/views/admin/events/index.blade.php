@@ -1,10 +1,6 @@
-@php
-    /** @var \App\Http\ViewModels\Admin\IndexViewModel<\App\Models\Event> $view */
-@endphp
-
 <x-layout.app>
     <div class="flex justify-end mb-4">
-        <a href="{{ $view->links->create }}">
+        <a href="{{ action([App\Http\Controllers\Admin\EventController::class, 'create']) }}">
             New Event
         </a>
     </div>
@@ -19,19 +15,19 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($view->items as $event)
+            @foreach($events as $event)
                 <tr>
                     <td>{{ $event->name }}</td>
                     <td>{{ $event->venue->name }}</td>
                     <td>{{ $event->venue->country->name }}</td>
                     <td class="numeric">{{ $event->updated_at->format('d/m/Y H:i') }}</td>
                     <td>
-                        <a href="{{ $event->links->edit }}">Edit</a> <br>
-                        <a href="{{ $event->links->show }}">View↗</a>
+                        <a href="{{ action([App\Http\Controllers\Admin\EventController::class, 'edit'], $event) }}">Edit</a> <br>
+                        <a href="{{ action(App\Http\Controllers\Front\ScheduleController::class, $event) }}">View↗</a>
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
-    <x-paginator :paginator="$view->paginator" />
+    <x-paginator :paginator="$events" />
 </x-layout.app>

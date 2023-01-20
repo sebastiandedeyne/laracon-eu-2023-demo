@@ -2,12 +2,13 @@
 
 namespace App\View\Components\Forms;
 
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class SelectField extends Component
 {
     public function __construct(
-        public array $options,
+        public Collection|array $options,
         public ?string $name = '',
         public ?string $value = '',
         public ?string $label = '',

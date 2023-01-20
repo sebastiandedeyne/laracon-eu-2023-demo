@@ -8,6 +8,14 @@ use App\Models\Venue;
 
 class EventController
 {
+    public function create()
+    {
+        return inertia('Events/Edit', new EventViewModel(
+            event: null,
+            venues: Venue::all(),
+        ));
+    }
+
     public function edit(Event $event)
     {
         return inertia('Events/Edit', new EventViewModel(

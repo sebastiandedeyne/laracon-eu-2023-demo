@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\ViewModels\Admin\IndexViewModel;
-use App\Http\ViewModels\Admin\VenueViewModel;
 use App\Models\Country;
 use App\Models\Venue;
 use Illuminate\Http\Request;
@@ -12,19 +10,29 @@ class VenueController
 {
     public function index()
     {
-        return view('admin.venues.index', new IndexViewModel(
-            paginator: Venue::with('country')->paginate(),
-            links: Venue::links(),
-        ));
+        return view('admin.venues.index', [
+            'venues' => Venue::paginate(),
+        ]);
     }
 
     public function create()
     {
-        return view('admin.venues.edit', new VenueViewModel(
-            venue: null,
-            countries: Country::all(),
-        ));
+        return view('admin.venues.edit', [
+            'countries' => Country::all()
+                ->mapWithKeys(fn (Country $country) => [$country->id => $country->name]),
+        ]);
     }
+
+    public function edit(Venue $venue)
+    {
+        return view('admin.venues.edit', [
+            'venue' => $venue,
+            'countries' => Country::all()
+                ->mapWithKeys(fn (Country $country) => [$country->id => $country->name]),
+        ]);
+    }
+
+    //
 
     public function store(Request $request)
     {
@@ -36,14 +44,6 @@ class VenueController
         $venue = Venue::create($data);
 
         return redirect($venue->links->edit);
-    }
-
-    public function edit(Venue $venue)
-    {
-        return view('admin.venues.edit', new VenueViewModel(
-            venue: $venue,
-            countries: Country::all(),
-        ));
     }
 
     public function update(Request $request, Venue $venue)

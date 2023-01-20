@@ -2,9 +2,9 @@
 
 namespace App\Support;
 
-use Illuminate\Database\Eloquent\Model;
+use Spatie\LaravelData\Data;
 
-class Links
+class Links extends Data
 {
     public function __construct(
         public ?string $index = null,

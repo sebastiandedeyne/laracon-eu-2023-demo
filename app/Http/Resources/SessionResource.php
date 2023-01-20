@@ -9,7 +9,7 @@ use Spatie\LaravelData\Data;
 class SessionResource extends Data
 {
     public function __construct(
-        public ?int $id,
+        public int $id,
         public string $name,
         public CarbonImmutable $starts_at,
         public CarbonImmutable $ends_at,

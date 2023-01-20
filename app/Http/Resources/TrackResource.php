@@ -10,7 +10,7 @@ use Spatie\LaravelData\DataCollection;
 class TrackResource extends Data
 {
     public function __construct(
-        public ?int $id,
+        public int $id,
         public string $name,
         #[DataCollectionOf(SessionResource::class)]
         public DataCollection $sessions,

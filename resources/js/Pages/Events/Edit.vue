@@ -46,31 +46,35 @@
                     </li>
                 </ul>
             </div>
-            <Submit>
-                Save
-            </Submit>
+            <div class="flex">
+                <Submit>Save</Submit>
+                <a :href="view.event.links.show">View↗</a>
+            </div>
             <p v-if="form.recentlySuccessful" class="bg-green-200 text-green-900 fixed bottom-8 right-0 p-4">Saved!</p>
         </form>
     </div>
 </template>
 
-<script setup lang="ts">
+<script setup>
 import { useForm } from '@inertiajs/inertia-vue3';
 import TextField from "../../Shared/Forms/TextField.vue";
 import SelectField from "../../Shared/Forms/SelectField.vue";
 import Submit from "../../Shared/Forms/Submit.vue";
 
-const { view } = defineProps<{ view: App.Http.ViewModels.Inertia.EventViewModel }>()
+const view = defineProps({
+    action: String,
+    method: String,
+    event: Object,
+    venues: Array,
+})
 
-const form = useForm<Partial<App.Http.Resources.EventResource>>({
+const form = useForm({
   name: view.event?.name,
-  venue_id: view.event?.venue_id,
+  venue_id: view.event?.venue.id,
   tracks: view.event?.tracks || [],
 });
 
 function submit() {
     form.submit(view.method.toLowerCase(), view.action, { preserveScroll: true });
 }
-
-const log = console.log;
 </script>

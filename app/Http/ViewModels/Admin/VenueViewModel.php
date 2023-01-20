@@ -6,7 +6,6 @@ use App\Http\ViewModels\ViewModel;
 use App\Models\Country;
 use App\Models\Venue;
 use Illuminate\Support\Collection;
-use Spatie\TypeScriptTransformer\Attributes\TypeScript;
 
 class VenueViewModel extends ViewModel
 {
