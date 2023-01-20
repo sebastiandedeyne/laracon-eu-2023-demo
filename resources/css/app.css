@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+
+body {
+    font-family: 'Berkeley Mono';
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    color: blue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+select {
+    -webkit-appearance: none;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    padding: 0.5rem 0.5rem;
+    border: 1px solid gray;
+    text-align: left;
+}
+
+th {
+    background-color: mistyrose;
+}
+
+th.numeric,
+td.numeric {
+    text-align: right;
+}
+
+.wrap {
+    max-width: 50rem;
+    width: 100%;
+    margin: 0 auto;
+}
+
+nav a {
+    text-decoration: none;
+    color: gray;
+}
+
+nav a[aria-current] {
+    color: black;
+}
+
+@tailwind utilities;
