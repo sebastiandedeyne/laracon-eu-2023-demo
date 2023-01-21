@@ -18,6 +18,7 @@ class VenueController
     public function create()
     {
         return view('admin.venues.edit', [
+            'venue' => null,
             'countries' => Country::all()
                 ->mapWithKeys(fn (Country $country) => [$country->id => $country->name]),
         ]);
