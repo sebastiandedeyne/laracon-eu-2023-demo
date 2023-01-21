@@ -9,27 +9,20 @@ use Illuminate\Support\Collection;
 
 class EventViewModel extends ViewModel
 {
-    public string $method;
-
     public string $action;
 
-    public array $venues;
+    public string $method;
 
     /** @param Collection<Venue> $venues */
     public function __construct(
         public ?Event $event,
-        Collection $venues,
+        public Collection $venues,
     ) {
-        if ($this->event) {
-            $this->method = 'PUT';
-            $this->action = $this->event->links->update;
-        } else {
-            $this->method = 'POST';
-            $this->action = Event::links()->store;
-        }
+        $this->action = $this->event ? $this->event->links->update : Event::links()->store;
+
+        $this->method = $this->event ? 'PUT' : 'POST';
 
         $this->venues = $venues
-            ->mapWithKeys(fn (Venue $venue) => [$venue->id => $venue->name])
-            ->toArray();
+            ->mapWithKeys(fn (Venue $venue) => [$venue->id => $venue->name]);
     }
 }
