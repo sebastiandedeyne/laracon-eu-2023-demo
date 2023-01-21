@@ -7,7 +7,7 @@ use App\Models\Event;
 use App\Models\Venue;
 use Illuminate\Support\Collection;
 
-class EventViewModel extends ViewModel
+class EventEditViewModel extends ViewModel
 {
     public string $action;
 
