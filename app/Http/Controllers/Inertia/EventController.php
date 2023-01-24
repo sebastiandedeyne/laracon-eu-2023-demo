@@ -18,7 +18,7 @@ class EventController
 
     public function edit(Event $event)
     {
-        return inertia('Events/Edit', new EventViewModel(
+        return inertia('Events/Edit', new EventEditViewModel(
             event: $event,
             venues: Venue::all(),
         ));
