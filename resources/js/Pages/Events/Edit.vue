@@ -61,12 +61,7 @@ import TextField from "../../Shared/Forms/TextField.vue";
 import SelectField from "../../Shared/Forms/SelectField.vue";
 import Submit from "../../Shared/Forms/Submit.vue";
 
-const view = defineProps({
-    action: String,
-    method: String,
-    event: Object,
-    venues: Array,
-})
+const { view } = defineProps({ view: Object })
 
 const form = useForm({
   name: view.event?.name,
