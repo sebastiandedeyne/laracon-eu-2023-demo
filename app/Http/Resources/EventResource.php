@@ -20,7 +20,7 @@ class EventResource extends Data
     ) {
     }
 
-    public static function fromModel(Event $event): self
+    public static function fromEvent(Event $event): self
     {
         return new self(
             id: $event->id,
