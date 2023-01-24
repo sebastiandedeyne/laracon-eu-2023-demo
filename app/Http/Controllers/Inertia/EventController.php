@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Inertia;
 
-use App\Http\ViewModels\Inertia\EventViewModel;
+use App\Http\ViewModels\Inertia\EventEditViewModel;
 use App\Models\Event;
 use App\Models\Venue;
 
@@ -10,7 +10,7 @@ class EventController
 {
     public function create()
     {
-        return inertia('Events/Edit', new EventViewModel(
+        return inertia('Events/Edit', new EventEditViewModel(
             event: null,
             venues: Venue::all(),
         ));
