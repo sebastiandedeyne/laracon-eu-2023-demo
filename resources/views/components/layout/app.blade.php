@@ -22,13 +22,5 @@
         {{ $slot }}
     </main>
 </div>
-<div class="fixed bottom-0 left-0 right-0 p-2 bg-purple-600 text-white text-sm flex justify-between">
-    <div>
-        Queries: {{ request()->attributes->get('queries') }}
-    </div>
-    <div>
-        Admin (<a href="#">switch to editor</a>)
-    </div>
-</div>
 </body>
 </html>
