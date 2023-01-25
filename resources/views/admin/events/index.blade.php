@@ -29,5 +29,4 @@
             @endforeach
         </tbody>
     </table>
-    <x-paginator :paginator="$events" />
 </x-layout.app>

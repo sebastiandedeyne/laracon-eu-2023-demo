@@ -11,7 +11,7 @@ class EventController
     public function index()
     {
         return view('admin.events.index', [
-            'events' => Event::with('venue.country')->paginate(),
+            'events' => Event::with('venue.country')->all(),
         ]);
     }
 

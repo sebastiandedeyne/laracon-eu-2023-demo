@@ -70,6 +70,6 @@ const form = useForm({
 });
 
 function submit() {
-    form.submit(view.method.toLowerCase(), view.action, { preserveScroll: true });
+    form.submit(view.method, view.action, { preserveScroll: true });
 }
 </script>

@@ -22,5 +22,4 @@
             @endforeach
         </tbody>
     </table>
-    <x-paginator :paginator="$venues" />
 </x-layout.app>

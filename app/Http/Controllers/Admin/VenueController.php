@@ -11,7 +11,7 @@ class VenueController
     public function index()
     {
         return view('admin.venues.index', [
-            'venues' => Venue::paginate(),
+            'venues' => Venue::all(),
         ]);
     }
 
