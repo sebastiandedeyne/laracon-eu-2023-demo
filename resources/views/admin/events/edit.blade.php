@@ -1,5 +1,5 @@
 @php
-    /** @var \App\Http\ViewModels\Admin\EventViewModel $view */
+    /** @var \App\Http\ViewModels\Admin\EventEditViewModel $view */
 @endphp
 
 <x-layout.app :title="$view->event?->name ?? 'New'">
