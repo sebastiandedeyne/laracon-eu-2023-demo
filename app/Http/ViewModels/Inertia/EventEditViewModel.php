@@ -3,7 +3,6 @@
 namespace App\Http\ViewModels\Inertia;
 
 use App\Http\Resources\EventResource;
-use App\Http\Resources\OptionResource;
 use App\Http\Resources\VenueResource;
 use App\Models\Event;
 use Illuminate\Support\Collection;
@@ -27,7 +26,7 @@ class EventEditViewModel extends InertiaViewModel
     ) {
         $this->event = $event ? EventResource::fromEvent($event) : null;
 
-        $this->venues = OptionResource::collection($venues);
+        $this->venues = VenueResource::collection($venues);
 
         $this->action = $this->event
             ? $this->event->links->update
