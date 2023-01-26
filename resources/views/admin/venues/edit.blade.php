@@ -1,6 +1,6 @@
 <x-layout.app>
     <x-forms.form
-        :action="$venue ? action([App\Http\Controllers\Admin\VenueController::class, 'update'], $venue) : action([App\Http\Controllers\Admin\VenueController::class, 'store'])"
+        :action="$venue ? action([\App\Http\Controllers\Admin\VenueController::class, 'update'], $venue) : action([\App\Http\Controllers\Admin\VenueController::class, 'store'])"
         :method="$venue ? 'PUT' : 'POST'"
     >
         <x-forms.text-field
